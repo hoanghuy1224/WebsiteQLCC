@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee Management System</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <style>
+        /* Navbar background color */
+        .navbar-inverse {
+            background-color: #0056b3; /* Dark blue */
+            border-color: #004085; /* Navbar border color */
+        }
+
+        .navbar-inverse .navbar-brand,
+        .navbar-inverse .navbar-nav > li > a {
+            color: #ffffff !important; /* White text */
+        }
+
+        .navbar-inverse .navbar-brand:hover,
+        .navbar-inverse .navbar-nav > li > a:hover {
+            color: #ffdd57 !important; /* Yellow on hover */
+        }
+        .button-spacing {
+            margin-top: 20px; /* Tùy ch?nh kho?ng cách theo ý mu?n */
+        }
+
+    </style>
+</head>
+<body>
+<!-- Navigation bar (header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/dashboard" th:href="@{/dashboard}">Apartment-Management</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <a class="navbar-brand" href="/Resident" th:href="@{/Resident}">Resident</a>
+            <a class="navbar-brand" href="/Apartment" th:href="@{/Apartment}">Apartment</a>
+            <a class="navbar-brand" href="/Service" th:href="@{/Service}">Service</a>
+            <a class="navbar-brand" href="/Contract" th:href="@{/Contract}">Contract</a>
+            <a class="navbar-brand" href="/Staff" th:href="@{/Staff}">Staff</a>
+            <a class="navbar-brand" href="/Payment" th:href="@{/Payment}">Payment</a>
+            <a class="navbar-brand" href="/Payment" th:href="@{/posst}">Post</a>
+            <a class="navbar-brand" href="/Payment" th:href="@{/client}">Client</a>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+
+<div class="container">
+    <h2 class="text-center">Save Contract</h2>
+    <form class="row g-3" th:action="@{/saveHopdong}" th:object="${hopdongg}" method="POST">
+
+        <!-- Apartment Selection Field -->
+        <div class="col-md-6">
+            <label for="inputApartment" class="form-label">Apartment</label>
+            <select th:field="*{apartment}" class="form-control" id="inputApartment">
+                <option value="" disabled selected>Select</option>
+                <option th:each="canHo : ${apartments}" th:value="${canHo.maCanHo}" th:text="${canHo.toaNha}"></option>
+            </select>
+        </div>
+
+        <!-- Resident Selection Field -->
+        <div class="col-md-6">
+            <label for="inputResident" class="form-label">Resident</label>
+            <select th:field="*{resident}" class="form-control" id="inputResident">
+                <option value="" disabled selected>Select</option>
+                <option th:each="resident : ${residents}" th:value="${resident.maCuDan}" th:text="${resident.hoTen}"></option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="inputNgayBatDau" class="form-label">Start Date and Time</label>
+            <input th:field="*{ngayBatDau}" type="datetime-local" class="form-control" id="inputNgayBatDau" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="inputNgayKetThuc" class="form-label">End Date and Time</label>
+            <input th:field="*{ngayKetThuc}" type="datetime-local" class="form-control" id="inputNgayKetThuc" required>
+        </div>
+
+
+        <div class="col-12">
+            <br>
+        </div>
+
+        <!-- Submit Button in Center -->
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-info button-spacing">Save Contract</button>
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

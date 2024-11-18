@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý chung cư</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css}"
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+<div id="app">
+    <div id="header__adress">
+        <div class="header__adress-wrap">
+            <i class="fa-solid fa-location-arrow"></i>
+            <p class="header__adress-text">
+                40 phú kiều-kiều mai-phúc diễn-bắc từ liêm-Hà Nội
+            </p>
+        </div>
+        <div class="header__adress-num">
+            <i class="fa-solid fa-phone"></i>
+            0339.250.091
+        </div>
+    </div>
+    <header id="header">
+        <nav id="nav__header">
+            <img th:src="@{/image/logo.png}" alt="Logo" class="nav__header-img">
+            <ul class="nav__header-list">
+                <li class="nav__header-item"><a href="" class="nav__header-link">Giới thiệu</a></li>
+                                <li class="nav__header-item"><a href="" class="nav__header-link">Dịch vụ</a></li>
+                                <li class="nav__header-item"><a href="" class="nav__header-link">Thanh toán</a></li>
+                <li class="nav__header-item"><a href="" class="nav__header-link">Liên hệ</a></li>
+                <li class="nav__header-item" sec:authorize="isAuthenticated()"><a class="nav__header-link"
+                                                                                  th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main">
+        <img class="main__introduce-img" th:src="@{/image/bat-dong-san-1-35.png}" alt="Introduction Image">
+        <div class="main__wrap">
+            <div class="main__introduce space">
+                <h3 class="main__introduce-text">Welcome to website</h3>
+            </div>
+
+            <div class="main__service space">
+                <div class="main__service-top">
+                    <h3 class="main__service-title-top">Dịch vụ của chúng tôi</h3>
+                    <p class="main__service-pgr">
+                        Với trên 15 năm kinh nghiệm trong lĩnh vực Quản lý tòa nhà, cho thuê căn hộ, văn phòng và môi
+                        giới các dự án Khu công nghiệp Hà Nội
+                    </p>
+                    <button class="main__service-btn">Tất cả dịch vụ</button>
+                </div>
+
+                <div class="main__service-bottom">
+                    <div class="main__service-box">
+                        <img class="main__service-img" th:src="@{/image/Quanlytoanha.png}" alt="Service Image 1">
+                        <h4 class="main__service-title">Quản lý vận hành tòa nhà, chung cư và cụm chung cư</h4>
+                        <p class="main_service-prg">
+                            Với trên 14 năm kinh nghiệm trong công tác quản lý vận hành khai thác các Tòa nhà tại Hà
+                            Nội.
+                            Công ty Huy Hoang đã quản lý, vận hành nhà chung cư, tòa nhà căn hộ như là đơn vị Quản
+                            lý vận[...]
+                        </p>
+                    </div>
+                    <div class="main__service-box">
+                        <img class="main__service-img" th:src="@{/image/Tuvan.jpg}" alt="Service Image 2">
+                        <h4 class="main__service-title">TƯ VẤN QUẢN LÝ VẬN HÀNH, SỬ DỤNG TÒA NHÀ CHUNG CƯ</h4>
+                        <p class="main_service-prg">
+                            Đơn vị chúng tôi nhận và thực hiện các công việc Quản lý vận hành khu chung cư cao tầng sau
+                        </p>
+                    </div>
+                    <div class="main__service-box">
+                        <img class="main__service-img" th:src="@{/image/dichvukithuat.jpg}" alt="Service Image 3">
+                        <h4 class="main__service-title">Dịch vụ kỹ thuật</h4>
+                        <p class="main_service-prg">
+                            Dịch vụ kỹ thuật tòa nhà chung cư văn phòng Công ty TNHH Thương Mại và Dịch Vụ Huy Hoang
+                            cung
+                            cấp được quý khách đánh giá cao về chất lượng và sự tận tình. Được thành lập theo giấy phép
+                            đăng ký[...]
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main__contact space">
+                <div class="main__contact-left">
+                    <h3 class="contact-title">Liên hệ</h3>
+                    <h4 class="contact-name-city">CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ HUY HOANG</h4>
+                    <p class="contact-adress">
+                        <i class="fa-solid fa-house"></i>
+                        40 phú kiều-kiều mai-phúc diễn-bắc từ liêm-Hà Nội</p>
+                    <p class="contact-phone"><i class="fa-solid fa-mobile"></i> 0339.250.091</p>
+                    <p class="contact-hotline"><i class="fa-solid fa-phone"></i> 0906.182.555</p>
+                    <p class="contact-mail"><i class="fa-solid fa-envelope"></i> HuyHoang@gmail.com</p>
+                </div>
+                <div class="main__contact-right">
+                    <h3 class="contact-title">Thông tin liên hệ</h3>
+                    <p class="contact-notification">
+                        Vui lòng điền đầy đủ thông tin để chúng tôi có thể hỗ trợ bạn tốt nhất.
+                    </p>
+                    <div th:if="${message}" class="alert alert-success">
+                        <span th:field="${message}"></span>
+                    </div>
+
+                    <form th:action="@{/saveClient}" th:object="${client}" method="post">
+                        <input class="fullname inputcss" type="text" th:field="*{hoTen}" placeholder="Tên đầy đủ"
+                               required>
+                        <input class="email inputcss" type="email" th:field="*{email}" placeholder="Địa chỉ email"
+                               required>
+                        <input class="number inputcss" type="tel" th:field="*{soDienThoai}" placeholder="Số điện thoại"
+                               required>
+                        <textarea class="content inputcss" th:field="*{noiDung}" placeholder="Nội dung"
+                                  required></textarea>
+                        <button class="send-contact" type="submit">Gửi liên hệ</button>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <div class="list__home space">
+                <div class="list__home-top">
+                    <h3 class="list__home-title-top">Danh sách tòa nhà</h3>
+                    <p class="list__home-pgr">
+                        Danh sách những tòa nhà, chung cư, khách sạn được quản lý và điều hành bởi Công ty TNHH Huy
+                        Hoang
+                    </p>
+                    <button class="list__home-btn">Tất cả tòa nhà</button>
+                </div>
+
+                <div class="list__home-bottom">
+                    <div class="list__home-box" th:each=" lists : ${posts}">
+                        <img class="list__home-img" th:src="@{'/upload/' + ${lists.imageUrl}} " alt="Building Image 1">
+                        <h4 class="list__home-title" th:utext="${lists.content}">Chung cư Diamond Crown Plaza</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <p class="footer-p">2024 © Bản quyền thuộc về Huy Hoang | Thiết kế bởi Ha Quang Ha</p>
+    </footer>
+</div>
+
+</body>
+</html>

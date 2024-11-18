@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <style>
+        /* Change the background color of the navbar */
+        .navbar-inverse {
+            background-color: #0056b3; /* dark blue color */
+            border-color: #004085; /* navbar border color */
+        }
+
+        .navbar-inverse .navbar-brand,
+        .navbar-inverse .navbar-nav > li > a {
+            color: #ffffff !important; /* white text */
+        }
+
+        .navbar-inverse .navbar-brand:hover,
+        .navbar-inverse .navbar-nav > li > a:hover {
+            color: #ffdd57 !important; /* yellow color on hover */
+        }
+
+        /* Change the color of the "Register" button */
+        .btn-success {
+            background-color: #28a745; /* dark green color */
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838; /* darker green color on hover */
+            border-color: #1e7e34;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- create navigation bar (header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Apartment-Management</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<!-- Create HTML registration form -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <!-- success message -->
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You have registered successfully!</div>
+            </div>
+
+            <h1>Register</h1>
+
+            <form th:action="@{/registration}" method="post" th:object="${user}">
+                <div class="form-group">
+                    <label class="control-label" for="username"> username</label>
+                    <input id="username" class="form-control" th:field="*{username}"
+                           required autofocus="autofocus"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="email"> Email </label>
+                    <input id="email" class="form-control" th:field="*{email}" required
+                           autofocus="autofocus"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="password"> Password </label>
+                    <input id="password" class="form-control" type="password"
+                           th:field="*{password}" required autofocus="autofocus"/>
+                </div>
+                <!-- form ??ng ký -->
+                <div class="form-group">
+                    <label class="control-label" for="role">Role</label>
+                    <input id="role" class="form-control" th:field="*{roles}"
+                           autofocus="autofocus"/>
+<!--                    <select id="role" class="form-control" th:field="*{roles}">-->
+<!--                        <option value="ROLE_USER">User</option>-->
+<!--                        <option value="ROLE_ADMIN">Admin</option>-->
+<!--                    </select>-->
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Register</button>
+                    <span>Already registered? <a href="/" th:href="@{/login}">Login</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
