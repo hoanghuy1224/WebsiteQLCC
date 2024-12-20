@@ -10,26 +10,135 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
     <style>
-        /* Navbar background color */
+        /* Navbar Styling */
         .navbar-inverse {
-            background-color: #0056b3; /* Dark blue */
-            border-color: #004085; /* Navbar border color */
+            background-color: #0056b3;
+            border: none;
         }
 
         .navbar-inverse .navbar-brand,
         .navbar-inverse .navbar-nav > li > a {
-            color: #ffffff !important; /* White text */
+            color: #fff !important;
+            font-weight: bold;
         }
 
         .navbar-inverse .navbar-brand:hover,
         .navbar-inverse .navbar-nav > li > a:hover {
-            color: #ffdd57 !important; /* Yellow on hover */
+            color: #ffdd57 !important;
+        }
+
+        /* General Body Styling */
+        body {
+            background: linear-gradient(to right, #2193b0, #6dd5ed);
+            font-family: Arial, sans-serif;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        /* Search Form Styling */
+        .search-form {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-form input[type="text"] {
+            width: 250px;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-form button {
+            padding: 8px 16px;
+            background-color: #0056b3;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #003366;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin-bottom: 30px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table th,
+        table td {
+            text-align: center;
+            padding: 15px;
+        }
+
+        table th {
+            background-color: #003366;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table td {
+            background-color: #fafafa;
+        }
+
+        table tr:nth-child(even) td {
+            background-color: #f2f2f2;
+        }
+
+        table td a {
+            color: #fff;
+            background-color: #007bff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        table td a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Pagination styling */
+        .pagination {
+            display: inline-flex;
+            list-style: none;
+            padding-left: 0;
+            border-radius: 5px;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a,
+        .pagination span {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .pagination a:hover,
+        .pagination span:hover {
+            background-color: #0056b3;
         }
 
     </style>
 
 </head>
 <body>
+
 <!-- Navigation bar (header) -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -69,7 +178,15 @@
         <a href="/addResident" th:href="@{/showRident}" class="btn btn-primary">Add Resident</a>
     </div>
 
-    <table border="1" class="table table-striped table-responsive-md">
+    <!-- Search Form -->
+    <div class="search-form">
+        <form action="/searchByName" method="get">
+            <input type="text" name="hoTen" placeholder="Search by name..." />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <table class="table table-striped table-responsive-md">
         <thead>
         <tr>
             <th>
@@ -103,18 +220,13 @@
             </td>
         </tr>
         </tbody>
-
     </table>
-
 
     <div th:if="${totalPages > 1}">
         <div class="row col-sm-10">
-            <!-- T?ng s? dòng -->
             <div class="col-sm-2">
                 Total Rows: [[${totalItems}]]
             </div>
-
-            <!-- Các nút chuy?n trang -->
             <div class="col-sm-4">
             <span th:each="i: ${#numbers.sequence(1, totalPages)}">
                 <a th:if="${currentPage != i}"
@@ -123,14 +235,12 @@
             </span>
             </div>
 
-            <!-- Nút Next -->
             <div class="col-sm-1">
                 <a th:if="${currentPage < totalPages}"
                    th:href="@{'/resident/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
                 <span th:unless="${currentPage < totalPages}">Next</span>
             </div>
 
-            <!-- Nút Last -->
             <div class="col-sm-1">
                 <a th:if="${currentPage < totalPages}"
                    th:href="@{'/resident/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
@@ -138,18 +248,6 @@
             </div>
         </div>
     </div>
-
-<!--    <div class="container">-->
-<!--        <div class="d-flex justify-content-center" style="margin-top: 50px;">-->
-<!--            <form action="/searchByName" method="get" class="d-flex" role="search" style="width: 500px;">-->
-<!--                <input class="form-control me-2" type="text" name="hoten" placeholder="Search by Name"-->
-<!--                       aria-label="Search by Name">-->
-<!--                <button class="btn btn-outline-success" type="submit">Search</button>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-
-
 </div>
 </body>
 </html>

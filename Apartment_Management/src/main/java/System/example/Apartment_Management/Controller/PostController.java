@@ -18,13 +18,6 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-//    @GetMapping("/blog")
-//    public String viewBlog(Model model) {
-////        List<Post> posts = postService.findAll();
-////        model.addAttribute("posts", posts);
-//        return "home/index";
-//    }
-
     @GetMapping("/post")
     public String viewHomePage(Model model) {
         return findPaginated(1, "id", "asc", model);

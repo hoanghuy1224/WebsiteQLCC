@@ -50,6 +50,13 @@ public class StaffController {
 
     }
 
+    @GetMapping("/SearchStaff")
+    public String SearchStaff(@RequestParam(value = "HoTen") String hoten, Model model) {
+        List<Staff> list = staffService.SearchStaff(hoten);
+        model.addAttribute("liststaff", list);
+        return "Admin/Staff";
+    }
+
     @GetMapping("/staff/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
                                 @RequestParam("sortField") String sortField,

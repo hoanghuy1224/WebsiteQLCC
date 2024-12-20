@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ResidentRepository extends JpaRepository<Resident, Integer> {
-//    List<Resident> findByName(String hoTen);
+    List<Resident> findByHoTenContainingIgnoreCase(String hoTen);
 }

@@ -48,6 +48,19 @@ public class ApartmentController {
         return "redirect:/apm";
 
     }
+    @GetMapping("/SearchByToaNha")
+    public String SearchApartment(@RequestParam(value = "toaNha", required = false) String toaNha, Model model) {
+        List<Apartment> apartments;
+        if (toaNha != null && !toaNha.trim().isEmpty()) {
+            apartments = apartmentService.search(toaNha);
+        } else {
+            apartments = apartmentService.getAll();
+        }
+        model.addAttribute("lisApartment", apartments);
+        return "Admin/Apartment";
+    }
+
+
 
     @GetMapping("/apartment/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,

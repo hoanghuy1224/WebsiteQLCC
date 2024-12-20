@@ -3,33 +3,101 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Registration and Login App</title>
+    <title>Admin Dashboard</title>
 
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
+
     <style>
-        /* Navbar background color */
+        /* General Body Styling */
+        body {
+            background: linear-gradient(to right, #2193b0, #6dd5ed); /* Gradient background */
+            font-family: Arial, sans-serif;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        /* Navbar Styling */
         .navbar-inverse {
-            background-color: #0056b3; /* Dark blue */
-            border-color: #004085; /* Navbar border color */
+            background-color: #0056b3;
+            border: none;
         }
 
         .navbar-inverse .navbar-brand,
         .navbar-inverse .navbar-nav > li > a {
-            color: #ffffff !important; /* White text */
+            color: #fff !important;
+            font-weight: bold;
         }
 
         .navbar-inverse .navbar-brand:hover,
         .navbar-inverse .navbar-nav > li > a:hover {
-            color: #ffdd57 !important; /* Yellow on hover */
+            color: #ffdd57 !important;
+        }
+
+        /* Dashboard Header */
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 36px;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-header p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Admin Card Styling */
+        .admin-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .admin-card h3 {
+            font-size: 24px;
+            color: #0056b3;
+        }
+
+        .admin-card a {
+            text-decoration: none;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .admin-card a:hover {
+            color: #218838;
+            text-decoration: underline;
+        }
+
+        /* Footer Styling */
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
         }
     </style>
-
 </head>
 <body>
-<!-- Navigation bar (header) -->
+
+<!-- Navigation Bar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -44,27 +112,77 @@
             <a class="navbar-brand" href="/dashboard" th:href="@{/dashboard}">Apartment-Management</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-            <a class="navbar-brand" href="/Resident" th:href="@{/Resident}">Resident</a>
-            <a class="navbar-brand" href="/Apartment" th:href="@{/Apartment}">Apartment</a>
-            <a class="navbar-brand" href="/Service" th:href="@{/Service}">Service</a>
-            <a class="navbar-brand" href="/Contract" th:href="@{/Contract}">Contract</a>
-            <a class="navbar-brand" href="/Staff" th:href="@{/Staff}">Staff</a>
-            <a class="navbar-brand" href="/Payment" th:href="@{/Payment}">Payment</a>
-            <a class="navbar-brand" href="/Payment" th:href="@{/posst}">Post</a>
-            <a class="navbar-brand" href="/Payment" th:href="@{/client}">Client</a>
             <ul class="nav navbar-nav">
+                <li><a href="/Resident" th:href="@{/Resident}">Resident</a></li>
+                <li><a href="/Apartment" th:href="@{/Apartment}">Apartment</a></li>
+                <li><a href="/Service" th:href="@{/Service}">Service</a></li>
+                <li><a href="/Contract" th:href="@{/Contract}">Contract</a></li>
+                <li><a href="/Staff" th:href="@{/Staff}">Staff</a></li>
+                <li><a href="/Payment" th:href="@{/Payment}">Payment</a></li>
+                <li><a href="/Post" th:href="@{/posst}">Post</a></li>
+                <li><a href="/Client" th:href="@{/client}">Client</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<br>
-<br>
-
+<!-- Dashboard Header -->
 <div class="container">
-    <h1>Welcome to the Drashboad Page</h1>
-    Welcome, <span sec:authentication="principal.username">User</span>
+    <div class="dashboard-header">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome back, <span sec:authentication="principal.username">Admin</span>!</p>
+    </div>
+
+    <!-- Admin Cards -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="admin-card">
+                <h3>Manage Residents</h3>
+                <a href="/Resident" th:href="@{/Resident}">Go to Residents</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="admin-card">
+                <h3>Manage Apartments</h3>
+                <a href="/Apartment" th:href="@{/Apartment}">Go to Apartments</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="admin-card">
+                <h3>Manage Services</h3>
+                <a href="/Service" th:href="@{/Service}">Go to Services</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="admin-card">
+                <h3>Manage Contracts</h3>
+                <a href="/Contract" th:href="@{/Contract}">Go to Contracts</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="admin-card">
+                <h3>Manage Staff</h3>
+                <a href="/Staff" th:href="@{/Staff}">Go to Staff</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="admin-card">
+                <h3>Manage Payments</h3>
+                <a href="/Payment" th:href="@{/Payment}">Go to Payments</a>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Apartment Management System</p>
+</footer>
+
 </body>
 </html>

@@ -39,8 +39,8 @@ public class ClientServicelmpl implements ClienService {
     }
 
     @Override
-    public Client updateClient(Client client) {
-        return clientRepository.save(client);
+    public List<Client> searchClientsByHoTen(String hoTen) {
+        return clientRepository.findByHoTenContainingIgnoreCase(hoTen);
     }
 
     @Override

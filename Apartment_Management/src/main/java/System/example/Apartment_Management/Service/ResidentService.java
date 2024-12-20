@@ -12,6 +12,6 @@ public interface ResidentService {
     Resident updateResident(Resident resident);
     Resident deleteResident(int maCuDan);
     List<Resident> getAllResident();
-//    List<Resident> findByName(String hoTen);
+    List<Resident> findByName(String hoTen);
     Page<Resident> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

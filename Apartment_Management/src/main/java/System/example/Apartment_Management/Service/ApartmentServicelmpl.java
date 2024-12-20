@@ -44,6 +44,10 @@ public class ApartmentServicelmpl implements ApartmentService {
         }
 
     }
+    @Override
+    public List<Apartment> search(String toaNha){
+        return apartmentRepository.findByToaNhaContainingIgnoreCase(toaNha);
+    }
 
     @Override
     @Transactional

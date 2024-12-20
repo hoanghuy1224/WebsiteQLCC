@@ -3,21 +3,31 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Registration and Login App</title>
+    <title>Apartment Management</title>
 
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
     <style>
+        /* Global body styles */
+        body {
+            background: linear-gradient(to right, #2193b0, #6dd5ed); /* Gradient background */
+            font-family: Arial, sans-serif;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        /* Navbar Styling */
         .navbar-inverse {
             background-color: #0056b3;
-            border-color: #004085;
+            border: none;
         }
 
         .navbar-inverse .navbar-brand,
         .navbar-inverse .navbar-nav > li > a {
-            color: #ffffff !important;
+            color: #fff !important;
+            font-weight: bold;
         }
 
         .navbar-inverse .navbar-brand:hover,
@@ -25,10 +35,141 @@
             color: #ffdd57 !important;
         }
 
-    </style>
+        /* Search Form Styling */
+        .search-form {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
 
+        .search-form input[type="text"] {
+            width: 300px;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-form button {
+            padding: 8px 16px;
+            background-color: #0056b3;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #003366;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #003366;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table td {
+            background-color: #fafafa;
+        }
+
+        table tr:nth-child(even) td {
+            background-color: #f2f2f2;
+        }
+
+        table td a {
+            color: #fff;
+            background-color: #007bff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        table td a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Pagination Styling */
+        .pagination {
+            display: inline-flex;
+            list-style: none;
+            padding-left: 0;
+            border-radius: 5px;
+            justify-content: center;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a,
+        .pagination span {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .pagination a:hover,
+        .pagination span:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination .disabled {
+            color: #ccc;
+            border-color: #ddd;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+    </style>
 </head>
 <body>
+
 <!-- Navigation bar (header) -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -59,15 +200,23 @@
     </div>
 </nav>
 
-<br>
-<br>
+<br><br>
 
 <div class="container mt-5">
     <div style="height: 80px; display: flex; justify-content: space-between; align-items: center;">
         <h2>Apartment Management</h2>
-        <a href="/addResident" th:href="@{/showApartment}" class="btn btn-primary">Add apartment</a>
+        <a href="/addApartment" th:href="@{/showApartment}" class="btn btn-primary">Add Apartment</a>
     </div>
-    <table border="1" class="table table-striped table-responsive-md">
+
+    <!-- Search Form -->
+    <div class="search-form">
+        <form method="get" action="/SearchByToaNha" >
+            <input type="text" name="toaNha" class="search-input" placeholder="Search by Apartment Building" th:value="${searchQuery}">
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
+
+    <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
             <th>
@@ -99,37 +248,37 @@
                 <a th:href="@{/showFormUpdate/{id}(id=${apartments.getMaCanHo()})}" class="btn btn-primary">Update</a>
                 <a th:href="@{/deleteApartment/{id}(id=${apartments.getMaCanHo()})}" class="btn btn-danger">Delete</a>
             </td>
-
         </tr>
         </tbody>
     </table>
-
 
     <div th:if="${totalPages > 1}">
         <div class="row col-sm-10">
             <div class="col-sm-2">
                 Total Rows: [[${totalItems}]]
             </div>
-            <div class="col-sm-1">
-					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-						<a th:if="${currentPage != i}"
-                           th:href="@{'/apartment/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
-					</span>
+            <div class="col-sm-4">
+            <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <a th:if="${currentPage != i}"
+                   th:href="@{'/apartment/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;&nbsp;
+            </span>
             </div>
+
             <div class="col-sm-1">
                 <a th:if="${currentPage < totalPages}"
-                   th:href="@{'/apartment/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+                   th:href="@{'/apartment/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
                 <span th:unless="${currentPage < totalPages}">Next</span>
             </div>
 
             <div class="col-sm-1">
                 <a th:if="${currentPage < totalPages}"
-                   th:href="@{'/apartment/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+                   th:href="@{'/apartment/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
                 <span th:unless="${currentPage < totalPages}">Last</span>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

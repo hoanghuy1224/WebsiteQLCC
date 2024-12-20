@@ -57,10 +57,10 @@ public class ResidentServicelmpl implements ResidentService {
         return residentRepository.findAll();
     }
 
-//    @Override
-//    public List<Resident> findByName(String hoTen) {
-//        return residentRepository.findByName(hoTen);
-//    }
+    @Override
+    public List<Resident> findByName(String hoTen) {
+        return residentRepository.findByHoTenContainingIgnoreCase(hoTen);
+    }
 
     @Override
     public Page<Resident> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {

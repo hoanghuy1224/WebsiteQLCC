@@ -41,10 +41,17 @@ public class ClientController {
     }
 
     @GetMapping("/deleteClient/{MaKhachHang}")
-    public String deleteApartment(@PathVariable(value = "MaKhachHang") int MaKhachHang) {
+    public String deleteClient(@PathVariable(value = "MaKhachHang") int MaKhachHang) {
         this.clienService.deleteClient(MaKhachHang);
         return "redirect:/cli";
 
+    }
+
+    @GetMapping("/searchByHoTen")
+    public String searchClientsByHoTen(@RequestParam("hoTen") String hoTen, Model model) {
+        List<Client> clients = clienService.searchClientsByHoTen(hoTen);
+        model.addAttribute("listclient", clients);
+        return "Admin/Client";
     }
 
     @GetMapping("/client/page/{pageNo}")

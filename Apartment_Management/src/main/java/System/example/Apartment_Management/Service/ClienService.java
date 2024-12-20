@@ -11,7 +11,7 @@ public interface ClienService {
     Client getClient(int id);
     List<Client> getAllClients();
     Client addClient(Client client);
+    List<Client> searchClientsByHoTen(String hoTen);
     void deleteClient(int id);
-    Client updateClient(Client client);
     Page<Client> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

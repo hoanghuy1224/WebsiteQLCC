@@ -10,8 +10,8 @@ import java.util.List;
 public interface StaffService {
     List<Staff> getAllStaff();
     Staff getStaffById(int id);
-    Staff updateStaff(Staff staff);
     Staff addStaff(Staff staff);
+    List<Staff> SearchStaff(String hoten);
     void deleteStaff(int id);
     Page<Staff> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

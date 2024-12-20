@@ -50,12 +50,12 @@ public class ResidentController {
         return "Admin/updateresident";
     }
 
-//    @GetMapping("/searchByName")
-//    public String searchResidentsByName(@RequestParam("hoTen") String hoTen, Model model) {
-//        List<Resident> residents = residentService.findByName(hoTen);
-//        model.addAttribute("listResident", residents);
-//        return "redirect:/rsd";
-//    }
+    @GetMapping("/searchByName")
+    public String searchResidentsByName(@RequestParam("hoTen") String hoTen, Model model) {
+        List<Resident> residents = residentService.findByName(hoTen);
+        model.addAttribute("listResident", residents);
+        return "Admin/Resident";
+    }
 
     @GetMapping("/deleteResident/{maCuDan}")
     public String deleteResident(@PathVariable(value = "maCuDan") int maCuDan) {

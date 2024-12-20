@@ -8,25 +8,34 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
     <style>
-        /* Navbar background color */
+        /* Global body styles */
+        body {
+            background: linear-gradient(to right, #2193b0, #6dd5ed); /* Gradient background */
+            font-family: Arial, sans-serif;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        /* Navbar Styling */
         .navbar-inverse {
-            background-color: #0056b3; /* Dark blue */
-            border-color: #004085; /* Navbar border color */
+            background-color: #0056b3;
+            border: none;
         }
 
         .navbar-inverse .navbar-brand,
         .navbar-inverse .navbar-nav > li > a {
-            color: #ffffff !important; /* White text */
+            color: #fff !important;
+            font-weight: bold;
         }
 
         .navbar-inverse .navbar-brand:hover,
         .navbar-inverse .navbar-nav > li > a:hover {
-            color: #ffdd57 !important; /* Yellow on hover */
+            color: #ffdd57 !important;
         }
+
         .button-spacing {
             margin-top: 20px; /* Tùy ch?nh kho?ng cách theo ý mu?n */
         }
-
 
     </style>
 </head>
@@ -71,19 +80,20 @@
         <!-- Name Field -->
         <div class="col-md-6">
             <label for="inputName" class="form-label">Name</label>
-            <input type="text" th:field="*{hoTen}" class="form-control" id="inputName" placeholder="Nh?p h? tên">
+            <input type="text" th:field="*{hoTen}" class="form-control" id="inputName" placeholder="Nhap ho tên">
         </div>
 
         <!-- Email Field -->
         <div class="col-md-6">
             <label for="inputEmail" class="form-label">Email</label>
-            <input type="email" th:field="*{email}" class="form-control" id="inputEmail" placeholder="Nh?p email">
+            <input type="email" th:field="*{email}" class="form-control" id="inputEmail" placeholder="Nhap email">
         </div>
 
         <!-- Phone Number Field -->
         <div class="col-md-6">
             <label for="inputPhone" class="form-label">Phone Number</label>
-            <input type="text" th:field="*{soDienThoai}" class="form-control" id="inputPhone" placeholder="Nh?p s? ?i?n tho?i">
+            <input type="text" th:field="*{soDienThoai}" class="form-control" id="inputPhone"
+                   placeholder="Nhap so dien thoai">
         </div>
 
         <!-- Apartment Selection Field -->

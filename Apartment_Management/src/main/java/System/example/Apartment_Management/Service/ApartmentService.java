@@ -13,5 +13,6 @@ public interface ApartmentService {
     Apartment add(Apartment apartment);
     Apartment update(Apartment apartment);
     Apartment delete(int maCanHo);
+    List<Apartment> search(String toaNha);
     Page<Apartment> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

@@ -16,9 +16,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                                         Authentication authentication) throws IOException, ServletException {
 
         if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-            response.sendRedirect("/dashboard");  // Điều hướng đến trang admin
+            response.sendRedirect("/dashboard");
         } else {
-            response.sendRedirect("/");  // Điều hướng đến trang home
+            response.sendRedirect("/");
         }
     }
 }

@@ -28,10 +28,7 @@
         <nav id="nav__header">
             <img th:src="@{/image/logo.png}" alt="Logo" class="nav__header-img">
             <ul class="nav__header-list">
-                <li class="nav__header-item"><a href="" class="nav__header-link">Giới thiệu</a></li>
-                                <li class="nav__header-item"><a href="" class="nav__header-link">Dịch vụ</a></li>
-                                <li class="nav__header-item"><a href="" class="nav__header-link">Thanh toán</a></li>
-                <li class="nav__header-item"><a href="" class="nav__header-link">Liên hệ</a></li>
+                <li class="nav__header-item"><a href="" class="nav__header-link">Trang chủ</a></li>
                 <li class="nav__header-item" sec:authorize="isAuthenticated()"><a class="nav__header-link"
                                                                                   th:href="@{/logout}">Logout</a></li>
             </ul>

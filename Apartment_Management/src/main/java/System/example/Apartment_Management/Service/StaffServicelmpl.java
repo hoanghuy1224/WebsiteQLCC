@@ -30,9 +30,13 @@ public class StaffServicelmpl implements StaffService {
         return optionalStaff.orElse(null);
     }
 
+    //    @Override
+//    public Staff updateStaff(Staff staff) {
+//        return staffRepository.save(staff);
+//    }
     @Override
-    public Staff updateStaff(Staff staff) {
-        return staffRepository.save(staff);
+    public List<Staff> SearchStaff(String hoten) {
+        return staffRepository.findByHoTenContainingIgnoreCase(hoten);
     }
 
     @Override
